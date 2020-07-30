@@ -1,5 +1,5 @@
 import { formatRelative } from "date-fns";
-import API_KEY from "../../../key.js";
+import API_KEY from "../../key.js";
 import {
   Combobox,
   ComboboxInput,
@@ -18,7 +18,7 @@ import {
 import usePlacesAutocomplete from "use-places-autocomplete";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import React from "react";
-import mapStyles from "../../../mapStyles.js";
+import mapStyles from "../../mapStyles.js";
 import styled from "styled-components";
 import useOnclickOutside from "react-cool-onclickoutside";
 import regeneratorRuntime from "regenerator-runtime";
