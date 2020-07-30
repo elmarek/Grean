@@ -1,5 +1,6 @@
 import React from 'react';
 import Map from './Map.jsx'
+import Header from './Header.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +12,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <Map />
+      <div>
+        <Header />
+        <Map />
+      </div>
     )
   }
 }
