@@ -1,29 +1,19 @@
 import { formatRelative } from "date-fns";
 import API_KEY from "../../key.js";
 import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
-  ComboboxOptionText,
-} from "@reach/combobox";
-import "@reach/combobox/styles.css";
-import {
   GoogleMap,
   LoadScript,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import usePlacesAutocomplete from "use-places-autocomplete";
-import { getGeocode, getLatLng } from "use-places-autocomplete";
 import React from "react";
 import mapStyles from "../../mapStyles.js";
 import styled from "styled-components";
 import useOnclickOutside from "react-cool-onclickoutside";
 import regeneratorRuntime from "regenerator-runtime";
+import Locate from './map-locate-me.jsx';
+import Search from './map-search.jsx';
 
-const MAPS_KEY = process.env.MAPS_API
 
 let MapContainer = styled.div`
 
@@ -36,6 +26,7 @@ let StyledH1 = styled.h1`
   color: seagreen;
   margin-left: 30px;
 `;
+
 
 // background-color: white;
 // width: 100%;
@@ -92,7 +83,6 @@ let StyledButton2 = styled.button`
   border-radius: 5px;
   border: solid 1px Gainsboro;
   padding-bottom: 3px;
-
 `;
 
 let StyledButton3 = styled.button`
@@ -107,79 +97,81 @@ let StyledButton3 = styled.button`
   background-color: transparent;
 `;
 
-let StyledLi = styled.ul`
-  font-family: Helvetica;
-  font-size: 18px;
-  list-style: none;
-  padding-inline-start: 5px;
-`;
-
+// Map option
 const containerStyle = {
   width: "100vw",
   height: "100vh",
 };
-
+// Map option
 const center = {
   lat: 33.448376,
   lng: -112.074036,
 };
-
+// Map option
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
   zoomControl: true,
 };
 
+// Variable reference for google places library/API
 const libraries = ["places"];
 
 function App() {
+
+  // Hook sets initial map state to null
   const [map, setMap] = React.useState(null);
 
-  // const onLoad = React.useCallback(function callback(map) {
-  //   const bounds = new window.google.maps.LatLngBounds();
-  //   map.fitBounds(bounds);
-  //   setMap(map)
-  // }, [])
-
+  // Creates initial map ref
   const mapRef = React.useRef();
 
+  // Update map ref to current map
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
   }, []);
 
-  // const onUnmount = React.useCallback(function callback(map) {
-  //   setMap(null);
-  // }, []);
-
+  // Panning function update location of map window
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
   }, []);
 
+  // Hooks for markers & selected states
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
-console.log(process.env.MAP_API)
+
   return (
+
+
+
+  //{/* ========================================== */}
+  //{/* LOAD MAPS AND OTHER GOOGLE API'S HERE      */}
+  //{/* ========================================== */}
     <LoadScript googleMapsApiKey={`${API_KEY}`} libraries={libraries}>
       <MapContainer>
         <StyledH1>
+
           {" "}
           {/* <span role='img' aria-label="evergreen_tree">
           🌵
         </span> */}
         </StyledH1>
 
+        {/* ========================================== */}
+        {/* Locate and Search Import functions         */}
+        {/* ========================================== */}
         <Locate panTo={panTo} />
         <Search panTo={panTo} />
 
-        {/* <StyledButton name="button">Sign-up</StyledButton>
-        <StyledButton2 name="button">Login</StyledButton2> */}
+
+        {/* ========================================== */}
+        {/* Map & Options - OnClick SetMarker Function */}
+        {/* ========================================== */}
         <GoogleMap
           id="map"
           mapContainerStyle={containerStyle}
           center={center}
           zoom={10}
-          // onUnmount={onUnmount}
           libraries={libraries}
           options={options}
           onLoad={onMapLoad}
@@ -192,8 +184,11 @@ console.log(process.env.MAP_API)
                 time: new Date(),
               },
             ]);
-          }}
-        >
+          }}>
+
+          {/* ========================================== */}
+          {/* Updates markers hook array w/ marker info  */}
+          {/* ========================================== */}
           {markers.map((marker) => (
             <Marker
               key={marker.time.toISOString()}
@@ -211,6 +206,10 @@ console.log(process.env.MAP_API)
             />
           ))}
 
+
+          {/* ========================================== */}
+          {/* Create pop up window for selected marker   */}
+          {/* ========================================== */}
           {selected ? (
             <InfoWindow
               position={{ lat: selected.lat, lng: selected.lng }}
@@ -224,99 +223,14 @@ console.log(process.env.MAP_API)
               </div>
             </InfoWindow>
           ) : null}
+
+          {/* ========================================== */}
+          {/* END OF - Create pop up window for selected */}
+          {/* ========================================== */}
+
         </GoogleMap>
       </MapContainer>
     </LoadScript>
-  );
-}
-
-function Locate({ panTo }) {
-  return (
-    <StyledButton3
-      className="locate"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          () => null
-        );
-      }}
-    >
-      <img src="https://fecproductiondescription.s3-us-west-1.amazonaws.com/locateIcon.png" alt="compass" />
-    </StyledButton3>
-  );
-}
-
-function Search({ panTo }) {
-  const {
-    ready,
-    value,
-    suggestions: { status, data },
-    setValue,
-    clearSuggestion,
-  } = usePlacesAutocomplete({
-    requestOptions: {
-      location: { lat: () => 33.448376, lng: () => -112.074036 },
-      radius: 200 * 1000,
-    },
-  });
-
-  const handleInput = (e) => {
-    setValue(e.target.value);
-  };
-
-  // const handleSelect =  (address) => {
-  //   // When user selects a place, we can replace the keyword without request data from API
-  //   // by setting the second parameter to "false"
-  //   setValue(description, false);
-
-  //   Get latitude and longitude via utility functions
-  //   try {
-  //     const results = await getGeocode({ address });
-  //     const { lat, lng } = await getLatLng(results[0]);
-  //     panTo({ lat, lng });
-  //   } catch (error) {
-  //     console.log("😱 Error: ", error);
-  //   }
-  // };
-
-  return (
-    <StyledSearch>
-      <Combobox onSelect={ async (address) => {
-        try{
-          const result = await getGeocode({address})
-          const {lat, lng} = await getLatLng(result[0])
-          console.log(lat, lng)
-          panTo({lat, lng})
-          console.log(lat, lng)
-        } catch(error) {
-          console.log('ERROR ON SELECT')
-        }
-        console.log(address);
-      }}>
-        <ComboboxInput
-          value={value}
-          onChange={handleInput}
-          style={{ width: 300, height: 30 }}
-          onChange={(e) => {
-            setValue(e.target.value);
-          }}
-          placeholder="Enter Zip-Code, City, State..."
-        />
-        <ComboboxPopover>
-          <StyledLi>
-            {status === "OK" &&
-              data.map(({ id, description }) => (
-                <ComboboxOption key={id} value={description} />
-              ))}
-          </StyledLi>
-        </ComboboxPopover>
-      </Combobox>
-    </StyledSearch>
   );
 }
 
