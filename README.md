@@ -1,13 +1,21 @@
 # Grean
 
-Welcome to Grean!
+Grean is an app that empowers users to join forces and keep their neighborhoods green. Users are able to create projects at areas that are heavily polluted, search for projects in their area, and join scheduled events to pick up litter.
 
-This repo is currently in the development stage.
+## Development
 
-To view the app:
-- clone this repository
-- run npm install
-- run webpack with npm run react-dev
-- start the server with npm start
+### Installing Dependencies
 
-The server runs on port 3000
+From within the root directory:
+
+```sh
+npm install
+npm run react-dev
+npm start
+```
+
+App runs on PORT 3000
+
+#### Contributing
+
+If you're interested in contributing, please reach out to either elmarek or lmodin for more information.
