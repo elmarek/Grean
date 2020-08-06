@@ -25,6 +25,10 @@ import regeneratorRuntime from "regenerator-runtime";
 
 const MAPS_KEY = process.env.MAPS_API
 
+let MapContainer = styled.div`
+
+`
+
 let StyledH1 = styled.h1`
   position: absolute;
   z-index: 10;
@@ -43,7 +47,7 @@ let StyledH1 = styled.h1`
 
 let StyledSearch = styled.div`
   position: absolute;
-  top: 35px;
+  top: 155px;
   left: 50%;
   transform: translateX(-30%);
   width: 100%;
@@ -157,9 +161,9 @@ function App() {
 console.log(process.env.MAP_API)
   return (
     <LoadScript googleMapsApiKey={`${API_KEY}`} libraries={libraries}>
-      <div>
+      <MapContainer>
         <StyledH1>
-          Greener{" "}
+          {" "}
           {/* <span role='img' aria-label="evergreen_tree">
           🌵
         </span> */}
@@ -168,8 +172,8 @@ console.log(process.env.MAP_API)
         <Locate panTo={panTo} />
         <Search panTo={panTo} />
 
-        <StyledButton name="button">Sign-up</StyledButton>
-        <StyledButton2 name="button">Login</StyledButton2>
+        {/* <StyledButton name="button">Sign-up</StyledButton>
+        <StyledButton2 name="button">Login</StyledButton2> */}
         <GoogleMap
           id="map"
           mapContainerStyle={containerStyle}
@@ -221,7 +225,7 @@ console.log(process.env.MAP_API)
             </InfoWindow>
           ) : null}
         </GoogleMap>
-      </div>
+      </MapContainer>
     </LoadScript>
   );
 }
