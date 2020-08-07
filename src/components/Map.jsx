@@ -14,6 +14,10 @@ import regeneratorRuntime from "regenerator-runtime";
 import Locate from "./map-locate-me.jsx";
 import Search from "./map-search.jsx";
 
+let MapContainer = styled.div`
+
+`
+
 let StyledH1 = styled.h1`
   position: absolute;
   z-index: 10;
@@ -21,6 +25,30 @@ let StyledH1 = styled.h1`
   color: seagreen;
   margin-left: 30px;
 `;
+
+
+// background-color: white;
+// width: 100%;
+// padding-left: 50px;
+// padding-top: 5px;
+// padding-bottom: 10px;
+// border-bottom: solid 1px;
+// margin-top: -1px;
+
+let StyledSearch = styled.div`
+  position: absolute;
+  top: 155px;
+  left: 50%;
+  transform: translateX(-30%);
+  width: 100%;
+  max-width: 500px;
+  z-index: 10;
+`;
+
+// let StyledBox = styled.Combobox`
+//   width: 100%;
+
+// `;
 
 let StyledButton = styled.button`
   position: absolute;
@@ -115,8 +143,19 @@ function App() {
     //{/* LOAD MAPS AND OTHER GOOGLE API'S HERE      */}
     //{/* ========================================== */}
     <LoadScript googleMapsApiKey={`${API_KEY}`} libraries={libraries}>
+<<<<<<< HEAD
       <div>
         <StyledH1>Grean </StyledH1>
+=======
+      <MapContainer>
+        <StyledH1>
+
+          {" "}
+          {/* <span role='img' aria-label="evergreen_tree">
+          🌵
+        </span> */}
+        </StyledH1>
+>>>>>>> b75b99ef42b24e9919dd971e7f87d970df947509
 
         {/* ========================================== */}
         {/* Locate and Search Import functions         */}
@@ -125,12 +164,15 @@ function App() {
         <Search panTo={panTo} />
 
         {/* ========================================== */}
+<<<<<<< HEAD
         {/* Placeholder Buttons for login and sign-up  */}
         {/* ========================================== */}
         <StyledButton name="button">Sign-up</StyledButton>
         <StyledButton2 name="button">Login</StyledButton2>
 
         {/* ========================================== */}
+=======
+>>>>>>> b75b99ef42b24e9919dd971e7f87d970df947509
         {/* Map & Options - OnClick SetMarker Function */}
         {/* ========================================== */}
         <GoogleMap
@@ -193,7 +235,7 @@ function App() {
           {/* END OF - Create pop up window for selected */}
           {/* ========================================== */}
         </GoogleMap>
-      </div>
+      </MapContainer>
     </LoadScript>
   );
 }
