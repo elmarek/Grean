@@ -11,9 +11,8 @@ import mapStyles from "../../mapStyles.js";
 import styled from "styled-components";
 import useOnclickOutside from "react-cool-onclickoutside";
 import regeneratorRuntime from "regenerator-runtime";
-import Locate from './map-locate-me.jsx';
-import Search from './map-search.jsx';
-
+import Locate from "./map-locate-me.jsx";
+import Search from "./map-search.jsx";
 
 let StyledH1 = styled.h1`
   position: absolute;
@@ -90,7 +89,6 @@ const options = {
 const libraries = ["places"];
 
 function App() {
-
   // Hook sets initial map state to null
   const [map, setMap] = React.useState(null);
 
@@ -113,17 +111,12 @@ function App() {
   const [selected, setSelected] = React.useState(null);
 
   return (
-
-
-
-  //{/* ========================================== */}
-  //{/* LOAD MAPS AND OTHER GOOGLE API'S HERE      */}
-  //{/* ========================================== */}
+    //{/* ========================================== */}
+    //{/* LOAD MAPS AND OTHER GOOGLE API'S HERE      */}
+    //{/* ========================================== */}
     <LoadScript googleMapsApiKey={`${API_KEY}`} libraries={libraries}>
       <div>
-        <StyledH1>
-          Grean{" "}
-        </StyledH1>
+        <StyledH1>Grean </StyledH1>
 
         {/* ========================================== */}
         {/* Locate and Search Import functions         */}
@@ -131,13 +124,11 @@ function App() {
         <Locate panTo={panTo} />
         <Search panTo={panTo} />
 
-
         {/* ========================================== */}
         {/* Placeholder Buttons for login and sign-up  */}
         {/* ========================================== */}
         <StyledButton name="button">Sign-up</StyledButton>
         <StyledButton2 name="button">Login</StyledButton2>
-
 
         {/* ========================================== */}
         {/* Map & Options - OnClick SetMarker Function */}
@@ -159,8 +150,8 @@ function App() {
                 time: new Date(),
               },
             ]);
-          }}>
-
+          }}
+        >
           {/* ========================================== */}
           {/* Updates markers hook array w/ marker info  */}
           {/* ========================================== */}
@@ -180,7 +171,6 @@ function App() {
               }}
             />
           ))}
-
 
           {/* ========================================== */}
           {/* Create pop up window for selected marker   */}
@@ -202,7 +192,6 @@ function App() {
           {/* ========================================== */}
           {/* END OF - Create pop up window for selected */}
           {/* ========================================== */}
-
         </GoogleMap>
       </div>
     </LoadScript>

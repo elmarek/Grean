@@ -3,14 +3,14 @@ const cors = require("cors");
 const Promise = require("bluebird");
 const bodyParser = require("body-parser");
 const path = require("path");
-// const db = require('../database-mongo/index.js')
+const hash = require("hash.js");
+//ex: hash.sha256().update('abc').digest('hex')
+const { Users, Projects, sequelize } = require("../database/db.js");
 
 const app = express();
 app.use(cors());
 app.use(express.static(path.join(__dirname, "../dist")));
 app.use(bodyParser.json());
-
-// Promise.promisifyAll(require('mongoose'));
 
 //Get all projects
 app.get("/projects", function (req, res) {
