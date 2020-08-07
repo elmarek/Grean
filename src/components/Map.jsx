@@ -15,6 +15,10 @@ import Locate from './map-locate-me.jsx';
 import Search from './map-search.jsx';
 
 
+let MapContainer = styled.div`
+
+`
+
 let StyledH1 = styled.h1`
   position: absolute;
   z-index: 10;
@@ -22,6 +26,30 @@ let StyledH1 = styled.h1`
   color: seagreen;
   margin-left: 30px;
 `;
+
+
+// background-color: white;
+// width: 100%;
+// padding-left: 50px;
+// padding-top: 5px;
+// padding-bottom: 10px;
+// border-bottom: solid 1px;
+// margin-top: -1px;
+
+let StyledSearch = styled.div`
+  position: absolute;
+  top: 155px;
+  left: 50%;
+  transform: translateX(-30%);
+  width: 100%;
+  max-width: 500px;
+  z-index: 10;
+`;
+
+// let StyledBox = styled.Combobox`
+//   width: 100%;
+
+// `;
 
 let StyledButton = styled.button`
   position: absolute;
@@ -120,9 +148,13 @@ function App() {
   //{/* LOAD MAPS AND OTHER GOOGLE API'S HERE      */}
   //{/* ========================================== */}
     <LoadScript googleMapsApiKey={`${API_KEY}`} libraries={libraries}>
-      <div>
+      <MapContainer>
         <StyledH1>
-          Grean{" "}
+
+          {" "}
+          {/* <span role='img' aria-label="evergreen_tree">
+          🌵
+        </span> */}
         </StyledH1>
 
         {/* ========================================== */}
@@ -130,13 +162,6 @@ function App() {
         {/* ========================================== */}
         <Locate panTo={panTo} />
         <Search panTo={panTo} />
-
-
-        {/* ========================================== */}
-        {/* Placeholder Buttons for login and sign-up  */}
-        {/* ========================================== */}
-        <StyledButton name="button">Sign-up</StyledButton>
-        <StyledButton2 name="button">Login</StyledButton2>
 
 
         {/* ========================================== */}
@@ -204,7 +229,7 @@ function App() {
           {/* ========================================== */}
 
         </GoogleMap>
-      </div>
+      </MapContainer>
     </LoadScript>
   );
 }
