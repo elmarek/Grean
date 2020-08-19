@@ -1,6 +1,17 @@
 import React from 'react';
-import Map from './Map.jsx'
-import Header from './Header.jsx'
+import Map from './Map.jsx';
+import Header from './Header.jsx';
+import Projects from './Projects.jsx';
+import styled from 'styled-components';
+
+let AppContainer = styled.div`
+
+`
+let MainView = styled.div`
+  display: grid;
+  grid-template-columns: 35% 65%;
+  grid-template-rows: auto;
+`
 
 class App extends React.Component {
   constructor(props) {
@@ -12,10 +23,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <AppContainer>
         <Header />
-        <Map />
-      </div>
+        <MainView>
+          <Projects />
+          <Map />
+        </MainView>
+      </AppContainer>
     )
   }
 }

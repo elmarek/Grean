@@ -15,7 +15,7 @@ import "@reach/combobox/styles.css";
 
 let StyledSearch = styled.div`
   position: absolute;
-  top: 35px;
+  top: 175px;
   left: 50%;
   transform: translateX(-30%);
   width: 100%;

@@ -15,7 +15,9 @@ import Locate from "./map-locate-me.jsx";
 import Search from "./map-search.jsx";
 
 let MapContainer = styled.div`
-
+  display: grid;
+  grid-column: 2;
+  grid-row: 1;
 `
 
 let StyledH1 = styled.h1`
@@ -36,10 +38,6 @@ let StyledH1 = styled.h1`
 // margin-top: -1px;
 
 let StyledSearch = styled.div`
-  position: absolute;
-  top: 155px;
-  left: 50%;
-  transform: translateX(-30%);
   width: 100%;
   max-width: 500px;
   z-index: 10;
@@ -143,19 +141,7 @@ function App() {
     //{/* LOAD MAPS AND OTHER GOOGLE API'S HERE      */}
     //{/* ========================================== */}
     <LoadScript googleMapsApiKey={`${API_KEY}`} libraries={libraries}>
-<<<<<<< HEAD
-      <div>
-        <StyledH1>Grean </StyledH1>
-=======
       <MapContainer>
-        <StyledH1>
-
-          {" "}
-          {/* <span role='img' aria-label="evergreen_tree">
-          🌵
-        </span> */}
-        </StyledH1>
->>>>>>> b75b99ef42b24e9919dd971e7f87d970df947509
 
         {/* ========================================== */}
         {/* Locate and Search Import functions         */}
@@ -163,16 +149,8 @@ function App() {
         <Locate panTo={panTo} />
         <Search panTo={panTo} />
 
-        {/* ========================================== */}
-<<<<<<< HEAD
-        {/* Placeholder Buttons for login and sign-up  */}
-        {/* ========================================== */}
-        <StyledButton name="button">Sign-up</StyledButton>
-        <StyledButton2 name="button">Login</StyledButton2>
 
         {/* ========================================== */}
-=======
->>>>>>> b75b99ef42b24e9919dd971e7f87d970df947509
         {/* Map & Options - OnClick SetMarker Function */}
         {/* ========================================== */}
         <GoogleMap
