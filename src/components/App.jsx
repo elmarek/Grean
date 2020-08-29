@@ -11,6 +11,8 @@ let MainView = styled.div`
   display: grid;
   grid-template-columns: 35% 65%;
   grid-template-rows: auto;
+  padding-left: 50px;
+  padding-right: 50px;
 `
 
 class App extends React.Component {

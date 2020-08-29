@@ -17,9 +17,9 @@ class Projects extends React.Component {
 
   render() {
     return (
-    <div>
+    <ProjectsContainer>
       Projects list will go here
-    </div>
+    </ProjectsContainer>
     )
   }
 }

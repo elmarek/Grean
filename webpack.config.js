@@ -30,6 +30,8 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
+          name: '[path][name].[hash].[ext]',
+          outputPath: 'assets/imgs'
         },
       },
       {

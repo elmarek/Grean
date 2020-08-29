@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Logo1 from '../../Grean0.png';
 
 let StyledHeader = styled.div`
   height: 120px;
@@ -43,7 +44,6 @@ let StyledButton = styled.button`
 `
 
 function Header (props) {
-  console.log(logo)
   return (
     <StyledHeader>
       <HeaderLeft>
