@@ -25,6 +25,25 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(jpg|png|svg)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '[path][name].[hash].[ext]',
+          outputPath: 'assets/imgs'
+        },
+      },
+      {
+        test: /\.(jpg|png|svg)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[hash].[ext]',
+            outputPath: 'assets/imgs'
+          }
+        },
+      },
     ],
   },
 };

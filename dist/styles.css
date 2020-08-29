@@ -1,3 +1,7 @@
 body {
   margin: 0 auto;
 }
+
+.logo-button {
+  background: no-repeat center/100% url(./assets/imgs/Grean0.2252f50016c0258c1e384ad6f6db9a0b.png);
+}
