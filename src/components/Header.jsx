@@ -3,46 +3,51 @@ import styled from 'styled-components';
 
 let StyledHeader = styled.div`
   height: 120px;
-  color: darkgreen;
+  color: #008145;
   padding-left: 80px;
   padding-right: 80px;
   margin: 0 auto;
-  padding-top: 20px;
   display: flex;
   justify-content: space-between;
-  background-color: seagreen;
+  background-color: white;
 `
 let HeaderLeft = styled.div`
   font-size: 80px;
   font-family: Verdana;
-  color: #F1F1F1;
+  color: #008145;
   font-weight: 600;
+  padding-top: 10px;
   padding-bottom: 5px;
+`
+
+let LogoButton = styled.div`
+  width: 300px;
+  height: 93px
 `
 let HeaderRight = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 `
 let StyledButton = styled.button`
   max-width: 100px;
   max-height: 50px;
-  background-color: #F1F1F1;
-  color: seagreen;
+  background-color: #11ffee00;
+  color: #008145;
   font-family: Helvetica;
-  font-size: large;
-  font-weight: bold;
-  border-radius: 5px;
-  border: solid 1px Gainsboro;
+  font-size: 20px;
   padding-bottom: 3px;
   margin: 3px;
+  border: 0px;
 `
 
 function Header (props) {
+  console.log(logo)
   return (
     <StyledHeader>
       <HeaderLeft>
-        Grean
+        <LogoButton className='logo-button'></LogoButton>
       </HeaderLeft>
       <HeaderRight>
         <StyledButton>
