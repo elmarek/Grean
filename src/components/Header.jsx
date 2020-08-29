@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo1 from '../../Grean0.png';
+import Logo1 from '../../Grean1.png';
 
 let StyledHeader = styled.div`
   height: 80px;
