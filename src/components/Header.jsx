@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Logo1 from '../../Grean0.png';
 
 let StyledHeader = styled.div`
-  height: 120px;
+  height: 80px;
   color: #008145;
   padding-left: 80px;
   padding-right: 80px;
@@ -17,13 +17,12 @@ let HeaderLeft = styled.div`
   font-family: Verdana;
   color: #008145;
   font-weight: 600;
-  padding-top: 10px;
-  padding-bottom: 5px;
+  padding-top: 8px;
 `
 
 let LogoButton = styled.div`
-  width: 300px;
-  height: 93px
+  width: 240px;
+  height: 57px
 `
 let HeaderRight = styled.div`
   display: flex;
