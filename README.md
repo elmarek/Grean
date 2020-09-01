@@ -4,7 +4,7 @@ Grean is an app that empowers users to join forces and keep their neighborhoods 
 
 ### Contributing
 
-If you're interested in contributing, please reach out to either elmarek or lmodin for more information.
+We are working hard to get this to a place where we can begin accepting contributions! Star the repo and check back soon for updates.
 
 ### Installing Dependencies
 
