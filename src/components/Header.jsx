@@ -31,15 +31,28 @@ let HeaderRight = styled.div`
   align-items: center;
 `
 let StyledButton = styled.button`
-  max-width: 100px;
+  max-width: 125px;
   max-height: 50px;
   background-color: #11ffee00;
   color: #008145;
   font-family: Helvetica;
   font-size: 20px;
+  padding-top: 3px;
   padding-bottom: 3px;
-  margin: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin: 5px;
   border: 0px;
+  border-radius: 2px;
+  &:hover,
+  &:focus {
+    outline: none;
+    border: 1px solid #008145;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 `
 
 function Header (props) {
