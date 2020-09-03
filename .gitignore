@@ -3,5 +3,6 @@ node_modules
 key.js
 .DS_Store
 package-lock.json
+.env
 bundle.js
 database-mongo
