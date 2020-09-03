@@ -12,9 +12,12 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "../dist")));
 app.use(bodyParser.json());
 
+Promise.promisifyAll(require('mongoose'));
+
 //Get all projects
 app.get("/projects", function (req, res) {
-  selectAllProjects()
+  console.log('I got a get for all projects')
+  db.getAllProjects()
     .then((projects) => {
       res.json(projects);
     })
@@ -24,53 +27,79 @@ app.get("/projects", function (req, res) {
     });
 });
 
-//get all events with specific project name
-app.get("/events/:projectName", function (req, res) {
-  let project = req.params.projectName.split("_").join(" ");
-  db.selectEventsByProject(project)
+//Get all events
+app.get("/events", function (req, res) {
+  console.log('I got a get for all events')
+  db.getAllEvents()
     .then((events) => {
       res.json(events);
     })
     .catch((err) => {
-      console.log("Error getting events by project name: ", err);
+      console.log("Error getting all events: ", err);
+      res.sendStatus(500);
+    });
+});
+
+//get all events with specific project id
+app.get("/events/:project", function (req, res) {
+  console.log('I got a get for events by project')
+  db.getEventsByProject(req.params.project)
+    .then((events) => {
+      res.json(events);
+    })
+    .catch((err) => {
+      console.log("Error getting events by project: ", err);
       res.sendState(500);
     });
 });
 
-//Create a new project
-app.post("/projects/newProject", function (req, res) {
-  let project = req.body;
-  console.log("got post project: ", project);
-  db.saveProject(project)
-    .then(res.send(200))
+//get all comments by either project or event
+app.get("/comments/:project", function (req, res) {
+  console.log('I got a get for comments')
+  db.getComments(req.params.project, req.body.event)
+    .then((comments) => {
+      res.json(comments);
+    })
     .catch((err) => {
-      console.log("Error saving new project: ", err);
+      console.log("Error getting all events: ", err);
       res.sendStatus(500);
     });
 });
+
+//Create a new project
+// app.post("/projects/newProject", function (req, res) {
+//   let project = req.body;
+//   console.log("got post project: ", project);
+//   db.saveProject(project)
+//     .then(res.send(200))
+//     .catch((err) => {
+//       console.log("Error saving new project: ", err);
+//       res.sendStatus(500);
+//     });
+// });
 
 //create a new event
-app.post("/events/newEvent", function (req, res) {
-  let event = req.body;
-  console.log("got post event: ", event);
-  db.saveEvent(event)
-    .then(res.send(200))
-    .catch((err) => {
-      console.log("Error saving new event: ", err);
-      res.sendStatus(500);
-    });
-});
+// app.post("/events/newEvent", function (req, res) {
+//   let event = req.body;
+//   console.log("got post event: ", event);
+//   db.saveEvent(event)
+//     .then(res.send(200))
+//     .catch((err) => {
+//       console.log("Error saving new event: ", err);
+//       res.sendStatus(500);
+//     });
+// });
 
 //Add name, people attending to event based on RSVP
-app.post("/RSVP", function (req, res) {
-  //console.log('Got an RSVP request for people: ', req.body)
-  db.rsvp(req.body)
-    .then(res.send(200))
-    .catch((err) => {
-      console.log("Error saving RSVP: ", err);
-      res.sendStatus(500);
-    });
-});
+// app.post("/RSVP", function (req, res) {
+//   //console.log('Got an RSVP request for people: ', req.body)
+//   db.rsvp(req.body)
+//     .then(res.send(200))
+//     .catch((err) => {
+//       console.log("Error saving RSVP: ", err);
+//       res.sendStatus(500);
+//     });
+// });
 
 const PORT = process.env.PORT || 3000
 
