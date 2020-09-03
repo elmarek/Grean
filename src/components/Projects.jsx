@@ -11,14 +11,23 @@ class Projects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      projects: [],
     }
   }
-
+  componentDidMount() {
+    fetch('/projects')
+      .then((res) => {res.json()})
+      .then((projects) => {
+        this.setState({
+          projects: projects
+        })
+      })
+  }
   render() {
+    console.log('projects: ', this.state.projects)
     return (
     <ProjectsContainer>
-      Projects list will go here
+      {this.state.projects}
     </ProjectsContainer>
     )
   }

@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const hash = require("hash.js");
 //ex: hash.sha256().update('abc').digest('hex')
-const { Users, Projects, sequelize } = require("../database/db.js");
+const db = require('../database/dbmongo.js');
 
 const app = express();
 app.use(cors());
@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 //Get all projects
 app.get("/projects", function (req, res) {
-  db.selectAllProjects()
+  selectAllProjects()
     .then((projects) => {
       res.json(projects);
     })
@@ -72,6 +72,8 @@ app.post("/RSVP", function (req, res) {
     });
 });
 
-app.listen(3000, function () {
-  console.log("listening on port 3000!");
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, function () {
+  console.log(`listening on port ${PORT}!`);
 });
