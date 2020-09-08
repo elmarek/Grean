@@ -172,15 +172,22 @@ Create query routes
 */
 
 const saveProject = (project) => {
+  //save a new project with the project data passed in
 
 }
 const saveEvent = (event) => {
+  //save event, specifying project id and user id
 
 }
 const saveUser = (user) => {
+  //create new user with data passed in
 
 }
-const saveComment = (comment) => {
+const saveComment = (comment, project, event, user) => {
+  //save new comment
+  //add project id
+  //if event specified, add event id
+  //add user id
 
 }
 
