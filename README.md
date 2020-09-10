@@ -15,5 +15,7 @@ npm install
 npm run react-dev
 npm start
 ```
+Follow steps 1-3 listed in server/server.js to load mongoDB with fake user, project, and event data for the purposes of development and testing
+
 
 App runs on port 3000
