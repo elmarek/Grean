@@ -19,7 +19,7 @@ app.get("/projects", function (req, res) {
   console.log('I got a get for all projects')
   db.getAllProjects()
     .then((projects) => {
-      res.json(projects);
+      res.send(projects);
     })
     .catch((err) => {
       console.log("Error getting all projects: ", err);

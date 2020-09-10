@@ -12,24 +12,31 @@ class Projects extends React.Component {
     super(props);
     this.state = {
       projects: [],
+      isLoaded: false
     }
   }
   componentDidMount() {
-    fetch('/projects')
-      .then((res) => {res.json()})
+    fetch('http://localhost:3000/projects')
+      .then(res => res.json())
       .then((projects) => {
+        console.log('I got the projects: ', projects[0])
         this.setState({
-          projects: projects
+          projects: projects,
+          isLoaded: true
         })
       })
   }
   render() {
-    console.log('projects: ', this.state.projects)
-    return (
-    <ProjectsContainer>
-      {this.state.projects}
-    </ProjectsContainer>
-    )
+    //console.log('projects: ', this.state.projects)
+    if (this.state.isLoaded) {
+      return (
+        <div>Hello, world</div>
+      )
+    } else {
+      return (
+        <ProjectsContainer></ProjectsContainer>
+      )
+    }
   }
 }
 
