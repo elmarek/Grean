@@ -27,11 +27,11 @@ Project schema and data types
 let projectSchema = new mongoose.Schema({
   name: String,
   description: String,
-  createdAt: {
+  created_at: {
     type: Date,
     default: Date.now
   },
-  createdBy: String,
+  created_by: String,
   location: {
     type: {
       type: String,
@@ -43,8 +43,8 @@ let projectSchema = new mongoose.Schema({
       required: true
     }
   },
-  litterTypes: [ String ],
-  projectType: [ String ],
+  litter_types: [ String ],
+  project_type: [ String ],
 })
 let Project = mongoose.model("Project", projectSchema)
 
@@ -93,8 +93,7 @@ let userSchema = new mongoose.Schema({
     default: Date.now
   },
   zip_code: {
-    type: Number,
-    max: 99999
+    type: String,
   },
   saved_projects: [ String ],
   events_attended: [ String ]
@@ -144,6 +143,12 @@ const getAllEvents = () => {
   return events;
 }
 
+const getUsers = () => {
+  console.log('I got a getUsers request')
+  var users = User.find({})
+  return users;
+}
+
 const getEventsByProject = (project) => {
   //get events by project id
   var events = Event.find({ project: project }).lean()
@@ -172,15 +177,26 @@ Create query routes
 */
 
 const saveProject = (project) => {
+  //save a new project with the project data passed in
+  var project = Project.create(project);
+  return project;
 
 }
 const saveEvent = (event) => {
-
+  //save event, specifying project id and user id
+  var event = Event.create(event);
+  return event;
 }
 const saveUser = (user) => {
-
+  //create new user with data passed in
+  var user = User.create(user);
+  return user;
 }
-const saveComment = (comment) => {
+const saveComment = (comment, project, event, user) => {
+  //save new comment
+  //add project id
+  //if event specified, add event id
+  //add user id
 
 }
 
@@ -214,5 +230,9 @@ module.exports = {
   getAllProjects: getAllProjects,
   getAllEvents: getAllEvents,
   getEventsByProject: getEventsByProject,
-  getComments: getComments
+  getComments: getComments,
+  saveUser: saveUser,
+  getUsers: getUsers,
+  saveProject: saveProject,
+  saveEvent: saveEvent,
 }
