@@ -66,6 +66,22 @@ app.get("/comments/:project", function (req, res) {
     });
 });
 
+//var users = require('../database/faker.js')
+//console.log(users)
+
+app.post('/users/newUser', function(req, res) {
+  console.log('I got a post for a new user: ', req.body);
+  db.saveUser(req.body)
+    .then((user) => {
+      console.log('I got user: ', user)
+      res.json(user);
+    })
+    .catch((err) => {
+      console.log('error saving new user');
+      res.sendStatus(500);
+    })
+})
+
 //Create a new project
 // app.post("/projects/newProject", function (req, res) {
 //   let project = req.body;

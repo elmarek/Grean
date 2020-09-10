@@ -93,8 +93,7 @@ let userSchema = new mongoose.Schema({
     default: Date.now
   },
   zip_code: {
-    type: Number,
-    max: 99999
+    type: String,
   },
   saved_projects: [ String ],
   events_attended: [ String ]
@@ -181,7 +180,8 @@ const saveEvent = (event) => {
 }
 const saveUser = (user) => {
   //create new user with data passed in
-
+  var user = User.create(user);
+  return user;
 }
 const saveComment = (comment, project, event, user) => {
   //save new comment
@@ -221,5 +221,6 @@ module.exports = {
   getAllProjects: getAllProjects,
   getAllEvents: getAllEvents,
   getEventsByProject: getEventsByProject,
-  getComments: getComments
+  getComments: getComments,
+  saveUser: saveUser,
 }
