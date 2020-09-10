@@ -14,6 +14,84 @@ app.use(bodyParser.json());
 
 Promise.promisifyAll(require('mongoose'));
 
+//This requires the faker file and the exported functions there that create fake data
+var dataGen = require('../database/faker.js')
+/*
+=========================================================
+Step 1:
+  a) uncomment the loadUsers function and call below
+    This will run the create fake users function and load 100 users to the db
+  b) save this file
+  c) comment the functions out again to avoid re running and save.
+
+=========================================================
+*/
+//Call this function to save users on each value in the users array
+// var loadUsers = (users) => {
+//   for (var i = 0; i < users.length; i++) {
+//     db.saveUser(users[i])
+//   }
+// }
+//loadUsers(dataGen.users);
+
+
+/*
+=========================================================
+Step 2:
+  a) uncomment the loadProjects function and call below
+    This will query for all the users, and using a random users's object id will create 200 projects and load them to the db
+  b) save this file
+  c) comment the functions out again to avoid re running and save.
+=========================================================
+*/
+//Call this function (as below) to get all the users and create projects based on the users ids, then load the projects into the db
+// var loadProjects = (cb) => {
+//   db.getUsers()
+//     .then((users) => {
+//       console.log('I got my users')
+//       return cb(users)
+//     })
+//     .then((projects) => {
+//       console.log('I got my projects')
+//       for (var i = 0; i < projects.length; i++) {
+//         db.saveProject(projects[i])
+//       }
+//     })
+// }
+//loadProjects(dataGen.getProjects)
+
+
+/*
+=========================================================
+Step 3:
+  a) uncomment the loadEvents function and call below
+    This will query for all the users and all the projects, will create 200 events based on the users ids and the projects
+  b) save this file
+  c) comment the functions out again to avoid re running and save.
+=========================================================
+*/
+//Call this function to get all the projects and users, create the events and load the events into the db
+// var loadEvents = () => {
+//   db.getUsers()
+//     .then((users) => {
+//       console.log('I got my users')
+//       db.getAllProjects()
+//         .then((projects) => {
+//           console.log('I got my projects')
+//           return dataGen.getEvents(projects, users)
+//         })
+//         .then((events) => {
+//           for (var i = 0; i < events.length; i++) {
+//             db.saveEvent(events[i])
+//           }
+//         })
+//         .catch((err) => {
+//           console.log(err)
+//         })
+//     })
+// }
+//loadEvents();
+
 //Get all projects
 app.get("/projects", function (req, res) {
   console.log('I got a get for all projects')
@@ -75,56 +153,6 @@ app.get('/users', function (req, res) {
     })
 })
 
-//This runs the faker file
-var dataGen = require('../database/faker.js')
-
-//This function calls save user on each value in the users array
-// var loadUsers = (users) => {
-//   for (var i = 0; i < users.length; i++) {
-//     db.saveUser(users[i])
-//   }
-// }
-
-//Call loadUsers function using the users data from the dataGen file
-//loadUsers(dataGen.users);
-
-//Call this function (as below) to get all the users and create projects based on the users ids, then load the projects into the db
-// var loadProjects = (cb) => {
-//   db.getUsers()
-//     .then((users) => {
-//       console.log('I got my users')
-//       return cb(users)
-//     })
-//     .then((projects) => {
-//       console.log('I got my projects')
-//       for (var i = 0; i < projects.length; i++) {
-//         db.saveProject(projects[i])
-//       }
-//     })
-// }
-//loadProjects(dataGen.getProjects)
-
-//Call this function to get all the projects and users, create the events and load the events into the db
-// var loadEvents = () => {
-//   db.getUsers()
-//     .then((users) => {
-//       console.log('I got my users')
-//       db.getAllProjects()
-//         .then((projects) => {
-//           console.log('I got my projects')
-//           return dataGen.getEvents(projects, users)
-//         })
-//         .then((events) => {
-//           for (var i = 0; i < events.length; i++) {
-//             db.saveEvent(events[i])
-//           }
-//         })
-//         .catch((err) => {
-//           console.log(err)
-//         })
-//     })
-// }
-//loadEvents();
 
 app.post('/users/newUser', function(req, res) {
   console.log('I got a post for a new user: ', req.body);
