@@ -79,16 +79,52 @@ app.get('/users', function (req, res) {
 var dataGen = require('../database/faker.js')
 
 //This function calls save user on each value in the users array
-var loadUsers = (users) => {
-  for (var i = 0; i < users.length; i++) {
-    db.saveUser(users[i])
-  }
-}
+// var loadUsers = (users) => {
+//   for (var i = 0; i < users.length; i++) {
+//     db.saveUser(users[i])
+//   }
+// }
 
 //Call loadUsers function using the users data from the dataGen file
-loadUsers(dataGen.users);
+//loadUsers(dataGen.users);
 
+//Call this function (as below) to get all the users and create projects based on the users ids, then load the projects into the db
+// var loadProjects = (cb) => {
+//   db.getUsers()
+//     .then((users) => {
+//       console.log('I got my users')
+//       return cb(users)
+//     })
+//     .then((projects) => {
+//       console.log('I got my projects')
+//       for (var i = 0; i < projects.length; i++) {
+//         db.saveProject(projects[i])
+//       }
+//     })
+// }
+//loadProjects(dataGen.getProjects)
 
+//Call this function to get all the projects and users, create the events and load the events into the db
+// var loadEvents = () => {
+//   db.getUsers()
+//     .then((users) => {
+//       console.log('I got my users')
+//       db.getAllProjects()
+//         .then((projects) => {
+//           console.log('I got my projects')
+//           return dataGen.getEvents(projects, users)
+//         })
+//         .then((events) => {
+//           for (var i = 0; i < events.length; i++) {
+//             db.saveEvent(events[i])
+//           }
+//         })
+//         .catch((err) => {
+//           console.log(err)
+//         })
+//     })
+// }
+//loadEvents();
 
 app.post('/users/newUser', function(req, res) {
   console.log('I got a post for a new user: ', req.body);

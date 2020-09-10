@@ -144,6 +144,7 @@ const getAllEvents = () => {
 }
 
 const getUsers = () => {
+  console.log('I got a getUsers request')
   var users = User.find({})
   return users;
 }
@@ -183,7 +184,8 @@ const saveProject = (project) => {
 }
 const saveEvent = (event) => {
   //save event, specifying project id and user id
-
+  var event = Event.create(event);
+  return event;
 }
 const saveUser = (user) => {
   //create new user with data passed in
@@ -232,4 +234,5 @@ module.exports = {
   saveUser: saveUser,
   getUsers: getUsers,
   saveProject: saveProject,
+  saveEvent: saveEvent,
 }

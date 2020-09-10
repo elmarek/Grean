@@ -22,7 +22,7 @@ const getProjects = (users) => {
   var projects = [];
   var projectCount = 0;
   while (projectCount < 200) {
-    var user = users[(Math.random() * users.length)];
+    var user = users[Math.floor((Math.random() * users.length))];
     var project = {
       name: faker.lorem.words(),
       description: faker.lorem.sentences(),
@@ -46,6 +46,38 @@ const getProjects = (users) => {
 }
 
 module.exports.getProjects = getProjects
+
+const getEvents = (projects, users) => {
+  var events = [];
+  var eventCount = 0;
+  while (eventCount < 200) {
+    var user = users[Math.floor((Math.random() * users.length))];
+    var project = projects[Math.floor((Math.random() * projects.length))];
+    var event = {
+      project: project._id,
+      name: faker.lorem.words(),
+      description: faker.lorem.sentences(),
+      created_at: faker.date.past(),
+      created_by: user._id,
+      date_start: faker.date.future(),
+      attendees_requested: faker.random.number(),
+      pickup: true,
+      pickup_notes: faker.lorem.sentence(),
+      sponsored: true,
+      sponsored_notes: faker.lorem.sentence(),
+      attendees: [ user._id ],
+      equipment: []
+    }
+    event.date_end = ( event.date_start.setHours( event.date_start.getHours() + 3  )),
+    events.push(event);
+    eventCount++;
+  }
+  //return projects list
+  return events;
+}
+
+module.exports.getEvents = getEvents
+
 /*
 
     {
