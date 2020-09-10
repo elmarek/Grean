@@ -8,14 +8,14 @@ We are working hard to get this to a place where we can begin accepting contribu
 
 ### Installing Dependencies
 
-From within the root directory:
+First, from within the root directory run the following commands to get project running
 
 ```sh
 npm install
 npm run react-dev
 npm start
 ```
-Follow steps 1-3 listed in server/server.js to load mongoDB with fake user, project, and event data for the purposes of development and testing
+Next, follow steps 1-3 listed in server/server.js to load mongoDB with fake user, project, and event data for the purposes of development and testing
 
 
 App runs on port 3000
