@@ -27,11 +27,11 @@ Project schema and data types
 let projectSchema = new mongoose.Schema({
   name: String,
   description: String,
-  createdAt: {
+  created_at: {
     type: Date,
     default: Date.now
   },
-  createdBy: String,
+  created_by: String,
   location: {
     type: {
       type: String,
@@ -43,8 +43,8 @@ let projectSchema = new mongoose.Schema({
       required: true
     }
   },
-  litterTypes: [ String ],
-  projectType: [ String ],
+  litter_types: [ String ],
+  project_type: [ String ],
 })
 let Project = mongoose.model("Project", projectSchema)
 
@@ -143,6 +143,11 @@ const getAllEvents = () => {
   return events;
 }
 
+const getUsers = () => {
+  var users = User.find({})
+  return users;
+}
+
 const getEventsByProject = (project) => {
   //get events by project id
   var events = Event.find({ project: project }).lean()
@@ -172,6 +177,8 @@ Create query routes
 
 const saveProject = (project) => {
   //save a new project with the project data passed in
+  var project = Project.create(project);
+  return project;
 
 }
 const saveEvent = (event) => {
@@ -223,4 +230,6 @@ module.exports = {
   getEventsByProject: getEventsByProject,
   getComments: getComments,
   saveUser: saveUser,
+  getUsers: getUsers,
+  saveProject: saveProject,
 }

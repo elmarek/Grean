@@ -1,8 +1,8 @@
 var faker = require('faker');
 
 var users = [];
-var count = 0;
-while (count < 10) {
+var userCount = 0;
+while (userCount < 100) {
   var user = {
     username: faker.internet.userName(),
     first: faker.name.firstName(),
@@ -13,11 +13,39 @@ while (count < 10) {
     events_attended: []
   }
   users.push(user);
-  count++;
+  userCount++;
 }
 
 module.exports.users = users
 
+const getProjects = (users) => {
+  var projects = [];
+  var projectCount = 0;
+  while (projectCount < 200) {
+    var user = users[(Math.random() * users.length)];
+    var project = {
+      name: faker.lorem.words(),
+      description: faker.lorem.sentences(),
+      created_at: faker.date.past(),
+      created_by: user._id,
+      location: {
+        "type" : "Point",
+        "coordinates": [
+          faker.address.longitude(),
+          faker.address.latitude()
+        ]
+      },
+      litter_types: [],
+      project_type: [],
+    }
+    projects.push(project);
+    projectCount++;
+  }
+  //return projects list
+  return projects;
+}
+
+module.exports.getProjects = getProjects
 /*
 
     {

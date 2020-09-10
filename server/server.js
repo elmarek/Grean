@@ -66,8 +66,29 @@ app.get("/comments/:project", function (req, res) {
     });
 });
 
-//var users = require('../database/faker.js')
-//console.log(users)
+//get all users
+app.get('/users', function (req, res) {
+  console.log('I got a get for all users')
+  db.getUsers()
+    .then((users) => {
+      res.json(users);
+    })
+})
+
+//This runs the faker file
+var dataGen = require('../database/faker.js')
+
+//This function calls save user on each value in the users array
+var loadUsers = (users) => {
+  for (var i = 0; i < users.length; i++) {
+    db.saveUser(users[i])
+  }
+}
+
+//Call loadUsers function using the users data from the dataGen file
+loadUsers(dataGen.users);
+
+
 
 app.post('/users/newUser', function(req, res) {
   console.log('I got a post for a new user: ', req.body);
