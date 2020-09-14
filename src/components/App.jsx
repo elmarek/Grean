@@ -10,7 +10,7 @@ let AppContainer = styled.div`
 let MainView = styled.div`
   display: grid;
   grid-template-columns: 35% 65%;
-  grid-template-rows: auto;
+  grid-template-rows: 200px 200px auto;
   padding-left: 50px;
   padding-right: 50px;
 `
