@@ -12,11 +12,9 @@ const ProjectsList = (props) => {
   //console.log('project list here')
   return (
     <ProjectList>
-      {props.projects.map(project => {
-        return (
-          <ProjectListItem project={project} />
-        )
-      })}
+      {props.projects.map(project => (
+        <ProjectListItem key={project._id} project={project} />
+      ))}
     </ProjectList>
   )
 }
