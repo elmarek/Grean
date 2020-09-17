@@ -51,7 +51,7 @@ class Projects extends React.Component {
     fetch('http://localhost:3000/projects')
       .then(res => res.json())
       .then((projects) => {
-        //console.log('I got the projects: ', projects[0])
+        console.log('I got the projects: ', projects[0])
         this.setState({
           projects: projects,
           isLoaded: true
