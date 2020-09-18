@@ -13,6 +13,7 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import regeneratorRuntime from "regenerator-runtime";
 import Locate from "./map-locate-me.jsx";
 import Search from "./map-search.jsx";
+import CreateProject from "./map-create-project.jsx"
 
 let MapContainer = styled.div`
   display: grid;
@@ -135,6 +136,7 @@ function App() {
   // Hooks for markers & selected states
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
+  const [project, setProject] = React.useState(false);
 
   return (
     //{/* ========================================== */}
@@ -148,6 +150,11 @@ function App() {
         {/* ========================================== */}
         <Locate panTo={panTo} />
         <Search panTo={panTo} />
+        {project ?
+        <CreateProject /> : null
+        }
+
+
 
 
         {/* ========================================== */}
@@ -161,16 +168,18 @@ function App() {
           libraries={libraries}
           options={options}
           onLoad={onMapLoad}
-          onClick={(event) => {
-            setMarkers((current) => [
-              ...current,
-              {
-                lat: event.latLng.lat(),
-                lng: event.latLng.lng(),
-                time: new Date(),
-              },
-            ]);
-          }}
+          onClick={(event)=> {
+            setProject(true)
+            // setMarkers((current) => [
+            //   ...current,
+            //   {
+            //     lat: event.latLng.lat(),
+            //     lng: event.latLng.lng(),
+            //     time: new Date(),
+            //   },
+            // ]);
+          }
+        }
         >
           {/* ========================================== */}
           {/* Updates markers hook array w/ marker info  */}
